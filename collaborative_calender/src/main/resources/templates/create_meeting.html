@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registration Page</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	
+	<ul id="menu" style="margin-top: 0.5%;">
+		<li>
+        	<form th:action="@{/logout}" method="post">
+            	<p style="display: contents;">
+                	Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            	</p>
+            	<input style="margin-left: 30px;" type="submit" value="Sign Out" />
+        	</form>
+    	</li>
+  		<li> <a th:href="@{/list_users}">List All Users</a> </li>
+  		<li> <a th:href="@{/meetings}">My Meetings</a> </li>
+  		<li> <a th:href="@{/create_meeting}">Create Meeting</a> </li>
+  		<li> <a th:href="@{/meeting_invites}">Meeting Invitation</a> </li>
+  	</ul>   
+  
+    <br>
+
+	<div class="container text-center">
+        <h1>Create Meeting</h1>
+   
+    <form th:action="@{/meeting_register}" th:object="${meeting}"
+            method="post" style="max-width: 600px; margin: 20px auto;">
+        <div class="m-3">
+        
+         	<div class="form-group">
+                <label>Creator: [[${#request.userPrincipal.principal.fullName}]] </label>
+                
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Meeting With: </label>
+                <div class="col-8">
+                 <select class="form-control" field="*{meetingWith}" id="meetingWith" name="meetingWith">
+                <option th:each="test : ${listUsers}"
+                th:value="${test.email}"
+                th:text="${test.firstName}"></option>
+                   
+                             </select>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Start Time: </label>
+                <div class="col-8">
+                    <input type="datetime-local" field="*{startTime}" name="startTime" class="form-control" required/>
+                </div>
+            </div>
+             
+            <div class="form-group row">
+                <label class="col-4 col-form-label">End Time: </label>
+                <div class="col-8">
+                    <input type="datetime-local" field="*{endTime}" name="endTime" class="form-control" required/>
+                </div>
+            </div>
+             
+            <div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+        </form>
+		 </div>
+		 
+		  
+            
+</body>
+</html>

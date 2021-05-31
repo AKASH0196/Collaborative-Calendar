@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registration Success</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	
+	<ul id="menu" style="margin-top: 0.5%;">
+		<li>
+        	<form th:action="@{/logout}" method="post">
+            	<p style="display: contents;">
+                	Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            	</p>
+            	<input style="margin-left: 30px;" type="submit" value="Sign Out" />
+        	</form>
+    	</li>
+  		<li> <a th:href="@{/list_users}">List All Users</a> </li>
+  		<li> <a th:href="@{/meetings}">My Meetings</a> </li>
+  		<li> <a th:href="@{/create_meeting}">Create Meeting</a> </li>
+  		<li> <a th:href="@{/meeting_invites}">Meeting Invitation</a> </li>
+  	</ul>   
+  
+    <br>
+
+	<div class="container text-center">
+		<h3>You have REJECTED the meeting invitation!</h3>
+   
+    </div>
+    
+    
+		
+</body>
+</html>
